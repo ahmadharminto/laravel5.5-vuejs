@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">My Profile</div>
                     <div class="panel-body">
-                        <h1>Hello from vue.js</h1>
+                        <h1>Hello me from vue.js</h1>
                     </div>
                 </div>
             </div>

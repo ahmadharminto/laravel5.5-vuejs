@@ -46,11 +46,14 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <router-link tag="li" to="/">
+                            <router-link tag="li" to="/task">
                                 <a>Tasks</a>
                             </router-link>
                             <router-link tag="li" to="/profile">
                                 <a>Profile</a>
+                            </router-link>
+                            <router-link tag="li" to="/chat">
+                                <a>Chat Room</a>
                             </router-link>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

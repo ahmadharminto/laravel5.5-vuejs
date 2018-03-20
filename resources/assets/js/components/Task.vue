@@ -17,7 +17,7 @@
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
-                            <tr v-for="(task, index) in tasks">
+                            <tr v-for="(task, index) in tasks" v-bind:data="task" v-bind:key="index">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ task.name }}</td>
                                 <td>{{ task.description }}</td>
@@ -43,7 +43,7 @@
                     <div class="modal-body">
                         <div class="alert alert-danger" v-if="errors.length > 0">
                             <ul>
-                                <li v-for="error in errors">{{ error }}</li>
+                                <li v-for="error in errors" v-bind:data="error" v-bind:key="error.index">{{ error }}</li>
                             </ul>
                         </div>
                         <div class="form-group">
@@ -73,7 +73,7 @@
                     <div class="modal-body">
                         <div class="alert alert-danger" v-if="errors.length > 0">
                             <ul>
-                                <li v-for="error in errors">{{ error }}</li>
+                                <li v-for="error in errors" v-bind:data="error" v-bind:key="error.index">{{ error }}</li>
                             </ul>
                         </div>
                         <div class="form-group">
@@ -120,24 +120,24 @@
             },
             createTask()
             {
-                axios.post('/task', {
+                axios.post('/data/task', {
                     name: this.task.name,
                     description: this.task.description,
                 })
-                    .then(response => {
-                        this.reset();
-                        this.tasks.push(response.data.task);
-                        $("#add_task_model").modal("hide");
-                    })
-                    .catch(error => {
-                        this.errors = [];
-                        if (error.response.data.errors.name) {
-                            this.errors.push(error.response.data.errors.name[0]);
-                        }
-                        if (error.response.data.errors.description) {
-                            this.errors.push(error.response.data.errors.description[0]);
-                        }
-                    });
+                .then(response => {
+                    this.reset();
+                    this.tasks.push(response.data.task);
+                    $("#add_task_model").modal("hide");
+                })
+                .catch(error => {
+                    this.errors = [];
+                    if (error.response.data.errors.name) {
+                        this.errors.push(error.response.data.errors.name[0]);
+                    }
+                    if (error.response.data.errors.description) {
+                        this.errors.push(error.response.data.errors.description[0]);
+                    }
+                });
             },
             reset()
             {
@@ -146,10 +146,10 @@
             },
             readTasks()
             {
-                axios.get('/task')
-                    .then(response => {
-                        this.tasks = response.data.tasks;
-                    });
+                axios.get('/data/task')
+                .then(response => {
+                    this.tasks = response.data.tasks;
+                });
             },
             initUpdate(index)
             {
@@ -159,34 +159,34 @@
             },
             updateTask()
             {
-                axios.patch('/task/' + this.update_task.id, {
+                axios.patch('/data/task/' + this.update_task.id, {
                     name: this.update_task.name,
                     description: this.update_task.description,
                 })
-                    .then(response => {
-                        $("#update_task_model").modal("hide");
-                    })
-                    .catch(error => {
-                        this.errors = [];
-                        if (error.response.data.errors.name) {
-                            this.errors.push(error.response.data.errors.name[0]);
-                        }
-                        if (error.response.data.errors.description) {
-                            this.errors.push(error.response.data.errors.description[0]);
-                        }
-                    });
+                .then(response => {
+                    $("#update_task_model").modal("hide");
+                })
+                .catch(error => {
+                    this.errors = [];
+                    if (error.response.data.errors.name) {
+                        this.errors.push(error.response.data.errors.name[0]);
+                    }
+                    if (error.response.data.errors.description) {
+                        this.errors.push(error.response.data.errors.description[0]);
+                    }
+                });
             },
             deleteTask(index)
             {
                 let conf = confirm("Do you ready want to delete this task?");
                 if (conf === true) {
-                    axios.delete('/task/' + this.tasks[index].id)
-                        .then(response => {
-                            this.tasks.splice(index, 1);
-                        })
-                        .catch(error => {
+                    axios.delete('/data/task/' + this.tasks[index].id)
+                    .then(response => {
+                        this.tasks.splice(index, 1);
+                    })
+                    .catch(error => {
 
-                        });
+                    });
                 }
             }
         }
