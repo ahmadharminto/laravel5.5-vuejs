@@ -9,6 +9,8 @@
 
 <p>Simple CRUD (tasks list) & real-time chat room using laravel and vue.js</p>
 
+<p align="center"><img src="https://raw.githubusercontent.com/ahmadharminto/laravel5.5-vuejs/master/public/chat-room.gif"></p>
+
 ## How to
 
 > composer install
