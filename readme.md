@@ -15,7 +15,7 @@
 
 > npm install
 
-> setup .env
+> setup .env (database & pusher)
 
 > php artisan migrate
 
