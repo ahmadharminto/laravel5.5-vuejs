@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <router-view></router-view>
+    <keep-alive :exclude="['task', 'profile']">
+        <router-view></router-view>
+    </keep-alive>
 @endsection

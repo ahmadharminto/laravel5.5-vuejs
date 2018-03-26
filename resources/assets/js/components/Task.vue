@@ -98,6 +98,7 @@
 
 <script>
     export default {
+        name: 'task',
         data(){
             return {
                 task: {
